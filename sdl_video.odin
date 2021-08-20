@@ -288,7 +288,7 @@ foreign lib {
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
 	GL_LoadLibrary           :: proc(path: cstring) -> c.int ---
-	GL_GetProcAddress        :: proc(procedure: cstring) ---
+	GL_GetProcAddress        :: proc(procedure: cstring) -> rawptr ---
 	GL_UnloadLibrary         :: proc() ---
 	GL_ExtensionSupported    :: proc(extension: cstring) -> bool ---
 	GL_ResetAttributes       :: proc() ---

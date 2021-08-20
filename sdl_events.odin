@@ -148,7 +148,7 @@ WindowEvent :: struct {
 	type: EventType, /**< ::SDL_WINDOWEVENT */
 	timestamp: u32,  /**< In milliseconds, populated using SDL_GetTicks() */
 	windowID:  u32,  /**< The associated window */
-	event:     u8,   /**< ::SDL_WindowEventID */
+	event:     WindowEventID,   /**< ::SDL_WindowEventID */
 	_:  u8,
 	_:  u8,
 	_:  u8,
