@@ -90,7 +90,7 @@ WINDOWPOS_ISCENTERED :: #force_inline proc "c" (X: c.int) -> bool {
 }
 
 
-WindowEventID :: enum c.int {
+WindowEventID :: enum u8 {
 	NONE,           /**< Never used */
 	SHOWN,          /**< Window has been shown */
 	HIDDEN,         /**< Window has been hidden */
