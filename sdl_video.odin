@@ -90,7 +90,7 @@ WINDOWPOS_ISCENTERED :: #force_inline proc "c" (X: c.int) -> bool {
 }
 
 
-WindowEventID :: enum c.int {
+WindowEventID :: enum u8 {
 	NONE,           /**< Never used */
 	SHOWN,          /**< Window has been shown */
 	HIDDEN,         /**< Window has been hidden */
@@ -115,7 +115,7 @@ WindowEventID :: enum c.int {
 	HIT_TEST,       /**< Window had a hit test that wasn't SDL_HITTEST_NORMAL. */
 }
 
-DisplayEventID :: enum c.int {
+DisplayEventID :: enum u8 {
 	NONE,          /**< Never used */
 	ORIENTATION,   /**< Display orientation has changed to data1 */
 	CONNECTED,     /**< Display has been added to the system */
@@ -288,7 +288,7 @@ foreign lib {
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
 	GL_LoadLibrary           :: proc(path: cstring) -> c.int ---
-	GL_GetProcAddress        :: proc(procedure: cstring) ---
+	GL_GetProcAddress        :: proc(procedure: cstring) -> rawptr ---
 	GL_UnloadLibrary         :: proc() ---
 	GL_ExtensionSupported    :: proc(extension: cstring) -> bool ---
 	GL_ResetAttributes       :: proc() ---

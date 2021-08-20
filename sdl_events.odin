@@ -134,10 +134,10 @@ CommonEvent :: struct {
 }
 
 DisplayEvent :: struct {
-	type: EventType, /**< ::SDL_DISPLAYEVENT */
-	timestamp: u32,  /**< In milliseconds, populated using SDL_GetTicks() */
-	display:   u32,  /**< The associated display index */
-	event:     u8,   /**< ::SDL_DisplayEventID */
+	type: EventType,           /**< ::SDL_DISPLAYEVENT */
+	timestamp: u32,            /**< In milliseconds, populated using SDL_GetTicks() */
+	display:   u32,            /**< The associated display index */
+	event:     DisplayEventID, /**< ::SDL_DisplayEventID */
 	_:  u8,
 	_:  u8,
 	_:  u8,
@@ -145,10 +145,10 @@ DisplayEvent :: struct {
 }
 
 WindowEvent :: struct {
-	type: EventType, /**< ::SDL_WINDOWEVENT */
-	timestamp: u32,  /**< In milliseconds, populated using SDL_GetTicks() */
-	windowID:  u32,  /**< The associated window */
-	event:     u8,   /**< ::SDL_WindowEventID */
+	type: EventType,          /**< ::SDL_WINDOWEVENT */
+	timestamp: u32,           /**< In milliseconds, populated using SDL_GetTicks() */
+	windowID:  u32,           /**< The associated window */
+	event:     WindowEventID, /**< ::SDL_WindowEventID */
 	_:  u8,
 	_:  u8,
 	_:  u8,
