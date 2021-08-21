@@ -1,10 +1,9 @@
 package sdl2
 
-Keycode :: distinct i32;
 
 SCANCODE_MASK :: 1<<30;
-SCANCODE_TO_KEYCODE :: #force_inline proc "c" (X: Scancode) -> Keycode {
-	return Keycode(i32(X) | SCANCODE_MASK);
+SCANCODE_TO_KEYCODE :: #force_inline proc "c" (X: Scancode) -> KeyCode {
+	return KeyCode(i32(X) | SCANCODE_MASK);
 }
 
 KeyCode :: enum i32 {
