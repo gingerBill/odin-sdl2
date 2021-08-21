@@ -37,14 +37,15 @@ foreign lib {
 	GetLocalAddresses :: proc(addresses: ^IPaddress, maxcount: c.int) -> c.int ---
 }
 
+
 /***********************************************************************/
 /* TCP network API                                                     */
 /***********************************************************************/
+
 TCPsocket :: distinct rawptr;
 
 @(default_calling_convention="c", link_prefix="SDLNet_")
 foreign lib {
-
 	TCP_Open           :: proc(ip: ^IPaddress) -> TCPsocket ---
 	TCP_Accept         :: proc(server: TCPsocket) -> TCPsocket ---
 	TCP_GetPeerAddress :: proc(sock: TCPsocket) -> ^IPaddress ---
@@ -96,10 +97,10 @@ foreign lib {
 	UDP_Close          :: proc(sock: UDPsocket) ---
 }
 
+
 /***********************************************************************/
 /* Hooks for checking sockets for available data                       */
 /***********************************************************************/
-
 
 SocketSet :: distinct rawptr;
 
@@ -133,6 +134,8 @@ foreign lib {
 	CheckSockets   :: proc(set: SocketSet, timeout: u32) -> c.int ---
 	FreeSocketSet  :: proc(set: SocketSet) ---
 }
+
+
 /***********************************************************************/
 /* Error reporting functions                                           */
 /***********************************************************************/
@@ -142,6 +145,7 @@ foreign lib {
 	SetError :: proc(fmt: cstring, #c_vararg args: ..any) ---
 	GetError :: proc() -> cstring ---
 }
+
 
 /***********************************************************************/
 /* Inline functions to read/write network data                         */
