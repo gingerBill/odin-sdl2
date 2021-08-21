@@ -39,8 +39,8 @@ INIT_WEBP :: InitFlags{.WEBP};
 Animation :: struct {
 	w, h:   c.int,
 	count:  c.int,
-	frames: ^^SDL.Surface,
-	delays: ^c.int,
+	frames: [^]^SDL.Surface,
+	delays: [^]c.int,
 }
 
 /* We'll use SDL for reporting errors */
@@ -104,7 +104,7 @@ foreign lib {
 	LoadXV_RW   :: proc(src: ^SDL.RWops) -> ^SDL.Surface ---
 	LoadWEBP_RW :: proc(src: ^SDL.RWops) -> ^SDL.Surface ---
 
-	ReadXPMFromArray :: proc(xpm: ^^c.char) -> ^SDL.Surface ---
+	ReadXPMFromArray :: proc(xpm: ^[^]c.char) -> ^SDL.Surface ---
 
 	/* Individual saving functions */
 	SavePNG    :: proc(surface: ^SDL.Surface, file: cstring) -> c.int ---

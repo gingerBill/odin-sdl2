@@ -84,7 +84,7 @@ foreign lib {
 	JoystickGetProductVersion       :: proc(joystick: ^Joystick) -> u16 ---
 	JoystickGetSerial               :: proc(joystick: ^Joystick) -> cstring ---
 	JoystickGetType                 :: proc(joystick: ^Joystick) -> JoystickType ---
-	JoystickGetGUIDString           :: proc(guid: JoystickGUID, pszGUID: ^u8, cbGUID: c.int) ---
+	JoystickGetGUIDString           :: proc(guid: JoystickGUID, pszGUID: [^]u8, cbGUID: c.int) ---
 	JoystickGetGUIDFromString       :: proc(pchGUID: cstring) -> JoystickGUID ---
 	JoystickGetAttached             :: proc(joystick: ^Joystick) -> bool ---
 	JoystickInstanceID              :: proc(joystick: ^Joystick) -> JoystickID ---

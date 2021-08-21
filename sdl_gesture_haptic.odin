@@ -203,10 +203,10 @@ HapticCustom :: struct {
 	interval:      u16,  /**< How soon it can be triggered again after button. */
 
 	/* Custom */
-	channels:      u8,   /**< Axes to use, minimum of one. */
-	period:        u16,  /**< Sample periods. */
-	samples:       u16,  /**< Amount of samples. */
-	data:          ^u16, /**< Should contain channels*samples items. */
+	channels:      u8,     /**< Axes to use, minimum of one. */
+	period:        u16,    /**< Sample periods. */
+	samples:       u16,    /**< Amount of samples. */
+	data:          [^]u16, /**< Should contain channels*samples items. */
 
 	/* Envelope */
 	attack_length: u16,  /**< Duration of the attack. */

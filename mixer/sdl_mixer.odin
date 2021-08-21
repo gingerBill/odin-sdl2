@@ -44,7 +44,7 @@ MAX_VOLUME :: SDL.MIX_MAXVOLUME;
 
 Chunk :: struct {
 	allocated: c.int,
-	abuf:      ^u8,
+	abuf:      [^]u8,
 	alen:      u32,
 	volume:    u8,  /* Per-sample volume, 0-128 */
 }
@@ -99,13 +99,13 @@ Mix_LoadWAV :: #force_inline proc "c" (file: cstring) -> ^Chunk {
 }
 
 
-MixFunc :: proc "c" (udata: rawptr, stream: ^u8, len: c.int);
+MixFunc :: proc "c" (udata: rawptr, stream: [^]u8, len: c.int);
 
 @(default_calling_convention="c", link_prefix="Mix_")
 foreign lib {
 	Linked_Version :: proc() -> ^SDL.version ---
 
-	Init :: proc(flags: InitFlags) -> ^c.int ---
+	Init :: proc(flags: InitFlags) -> c.int ---
 	Quit :: proc() ---
 
 	OpenAudio :: proc(frequency: c.int, format: u16, channels: c.int, chunksize: c.int) -> c.int ---
@@ -116,8 +116,8 @@ foreign lib {
 	LoadMUS :: proc(file: cstring) -> ^Music ---
 	LoadMUS_RW :: proc(src: ^SDL.RWops, freesrc: bool) -> ^Music ---
 	LoadMUSType_RW :: proc(src: ^SDL.RWops, type: MusicType, freesrc: bool) -> ^Music ---
-	QuickLoad_WAV :: proc(mem: ^u8) -> ^Chunk ---
-	QuickLoad_RAW :: proc(mem: ^u8, len: u32) -> ^Chunk ---
+	QuickLoad_WAV :: proc(mem: [^]u8) -> ^Chunk ---
+	QuickLoad_RAW :: proc(mem: [^]u8, len: u32) -> ^Chunk ---
 	FreeChunk :: proc(chunk: ^Chunk) ---
 	FreeMusic :: proc(music: ^Music) ---
 	GetNumChunkDecoders :: proc() -> c.int ---

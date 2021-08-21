@@ -53,7 +53,7 @@ foreign lib {
 	SetRelativeMouseMode  :: proc(enabled: bool) -> c.int ---
 	CaptureMouse          :: proc(enabled: bool) -> c.int ---
 	GetRelativeMouseMode  :: proc() -> bool ---
-	CreateCursor          :: proc(data: ^u8, mask: ^u8, w, h, hot_x, hot_y: c.int) -> ^Cursor ---
+	CreateCursor          :: proc(data: [^]u8, mask: [^]u8, w, h, hot_x, hot_y: c.int) -> ^Cursor ---
 	CreateColorCursor     :: proc(surface: ^Surface, hot_x, hot_y: c.int) -> ^Cursor ---
 	CreateSystemCursor    :: proc(id: SystemCursor) -> ^Cursor ---
 	SetCursor             :: proc(cursor: ^Cursor) ---

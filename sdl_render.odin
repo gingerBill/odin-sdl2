@@ -112,23 +112,23 @@ foreign lib {
 	GetRenderDrawBlendMode       :: proc(renderer: ^Renderer, blendMode: ^BlendMode) -> c.int ---
 	RenderClear                  :: proc(renderer: ^Renderer) -> c.int ---
 	RenderDrawPoint              :: proc(renderer: ^Renderer, x, y: c.int) -> c.int ---
-	RenderDrawPoints             :: proc(renderer: ^Renderer, points: ^Point, count: c.int) -> c.int ---
+	RenderDrawPoints             :: proc(renderer: ^Renderer, points: [^]Point, count: c.int) -> c.int ---
 	RenderDrawLine               :: proc(renderer: ^Renderer, x1, y1, x2, y2: c.int) -> c.int ---
-	RenderDrawLines              :: proc(renderer: ^Renderer, points: ^Point, count: c.int) -> c.int ---
+	RenderDrawLines              :: proc(renderer: ^Renderer, points: [^]Point, count: c.int) -> c.int ---
 	RenderDrawRect               :: proc(renderer: ^Renderer, rect: ^Rect) -> c.int ---
 	RenderDrawRects              :: proc(renderer: ^Renderer, rect: ^Rect, count: c.int) -> c.int ---
 	RenderFillRect               :: proc(renderer: ^Renderer, rect: ^Rect) -> c.int ---
-	RenderFillRects              :: proc(renderer: ^Renderer, rects: ^Rect, count: c.int) -> c.int ---
+	RenderFillRects              :: proc(renderer: ^Renderer, rects: [^]Rect, count: c.int) -> c.int ---
 	RenderCopy                   :: proc(renderer: ^Renderer, texture: ^Texture, srcrect: ^Rect, dstrect: ^Rect) -> c.int ---
 	RenderCopyEx                 :: proc(renderer: ^Renderer, texture: ^Texture, srcrect: ^Rect, dstrect: ^Rect, angle: f64, center: ^Point, flip: RendererFlip) -> c.int ---
 	RenderDrawPointF             :: proc(renderer: ^Renderer, x, y: f32) -> c.int ---
-	RenderDrawPointsF            :: proc(renderer: ^Renderer, points: ^FPoint, count: c.int) -> c.int ---
+	RenderDrawPointsF            :: proc(renderer: ^Renderer, points: [^]FPoint, count: c.int) -> c.int ---
 	RenderDrawLineF              :: proc(renderer: ^Renderer, x1, y1, x2, y2: f32) -> c.int ---
-	RenderDrawLinesF             :: proc(renderer: ^Renderer, points: ^FPoint, count: c.int) -> c.int ---
+	RenderDrawLinesF             :: proc(renderer: ^Renderer, points: [^]FPoint, count: c.int) -> c.int ---
 	RenderDrawRectF              :: proc(renderer: ^Renderer, rect: ^FRect) -> c.int ---
-	RenderDrawRectsF             :: proc(renderer: ^Renderer, rects: ^FRect, count: c.int) -> c.int ---
+	RenderDrawRectsF             :: proc(renderer: ^Renderer, rects: [^]FRect, count: c.int) -> c.int ---
 	RenderFillRectF              :: proc(renderer: ^Renderer, rect: ^FRect) -> c.int ---
-	RenderFillRectsF             :: proc(renderer: ^Renderer, rects: ^FRect, count: c.int) -> c.int ---
+	RenderFillRectsF             :: proc(renderer: ^Renderer, rects: [^]FRect, count: c.int) -> c.int ---
 	RenderCopyF                  :: proc(renderer: ^Renderer, texture: ^Texture, srcrect: ^Rect, dstrect: ^FRect) -> c.int ---
 	RenderCopyExF                :: proc(renderer: ^Renderer, texture: ^Texture, srcrect: ^Rect, dstrect: ^FRect, angle: f64, center: ^FPoint, flip: RendererFlip) -> c.int ---
 	RenderReadPixels             :: proc(renderer: ^Renderer, rect: ^Rect, format: u32, pixels: rawptr, pitch: c.int) -> c.int ---

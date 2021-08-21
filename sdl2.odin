@@ -130,7 +130,7 @@ foreign lib {
 foreign lib {
 	SetError    :: proc(fmt: cstring, #c_vararg args: ..any) -> c.int ---
 	GetError    :: proc() -> cstring ---
-	GetErrorMsg :: proc(errstr: ^u8, maxlen: c.int) -> cstring ---
+	GetErrorMsg :: proc(errstr: [^]u8, maxlen: c.int) -> cstring ---
 	ClearError  :: proc() ---
 }
 
@@ -261,7 +261,7 @@ foreign lib {
 	SensorGetType                  :: proc(sensor: ^Sensor) -> SensorType ---
 	SensorGetNonPortableType       :: proc(sensor: ^Sensor) -> c.int ---
 	SensorGetInstanceID            :: proc(sensor: ^Sensor) -> SensorID ---
-	SensorGetData                  :: proc(sensor: ^Sensor, data: ^f32, num_values: c.int) -> c.int ---
+	SensorGetData                  :: proc(sensor: ^Sensor, data: [^]f32, num_values: c.int) -> c.int ---
 	SensorClose                    :: proc(sensor: ^Sensor) ---
 	SensorUpdate                   :: proc() ---
 }

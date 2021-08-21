@@ -45,6 +45,6 @@ foreign lib {
 	HasIntersection      :: proc(A, B: ^Rect) -> bool ---
 	IntersectRect        :: proc(A, B: ^Rect, result: ^Rect) -> bool ---
 	UnionRect            :: proc(A, B: ^Rect, result: ^Rect) ---
-	EnclosePoints        :: proc(points: ^Point, count: c.int, clip: ^Rect, result: ^Rect) -> bool ---
+	EnclosePoints        :: proc(points: [^]Point, count: c.int, clip: ^Rect, result: ^Rect) -> bool ---
 	IntersectRectAndLine :: proc(rect: ^Rect, X1, Y1, X2, Y2: ^c.int) -> bool ---
 }

@@ -227,11 +227,11 @@ foreign lib {
 	FreeFormat             :: proc(format: ^PixelFormat) ---
 	AllocPalette           :: proc(ncolors: c.int) -> ^Palette ---
 	SetPixelFormatPalette  :: proc(format: ^PixelFormat, palette: ^Palette) -> c.int ---
-	SetPaletteColors       :: proc(palette: ^Palette, colors: ^Color, firstcolor, ncolors: c.int) -> c.int ---
+	SetPaletteColors       :: proc(palette: ^Palette, colors: [^]Color, firstcolor, ncolors: c.int) -> c.int ---
 	FreePalette            :: proc(palette: ^Palette) ---
 	MapRGB                 :: proc(format: ^PixelFormat, r, g, b: u8) -> u32 ---
 	MapRGBA                :: proc(format: ^PixelFormat, r, g, b, a: u8) -> u32 ---
 	GetRGB                 :: proc(pixel: u32, format: ^PixelFormat, r, g, b: ^u8) ---
 	GetRGBA                :: proc(pixel: u32, format: ^PixelFormat, r, g, b, a: ^u8) ---
-	CalculateGammaRamp     :: proc(gamma: f32, ramp: ^u16) ---
+	CalculateGammaRamp     :: proc(gamma: f32, ramp: ^[256]u16) ---
 }

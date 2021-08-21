@@ -142,8 +142,8 @@ iconv_t :: distinct rawptr;
 foreign lib {
 	iconv_open   :: proc(tocode, fromcode: cstring) -> iconv_t ---
 	iconv_close  :: proc(cd: iconv_t) -> c.int ---
-	iconv        :: proc(cd: iconv_t, inbuf: ^cstring, inbytesleft: ^c.size_t, outbuf: ^^u8, outbytesleft: ^c.size_t) -> c.size_t ---
-	iconv_string :: proc(tocode, fromcode, inbuf: cstring, inbytesleft: c.size_t) -> ^u8 ---
+	iconv        :: proc(cd: iconv_t, inbuf: ^cstring, inbytesleft: ^c.size_t, outbuf: ^[^]u8, outbytesleft: ^c.size_t) -> c.size_t ---
+	iconv_string :: proc(tocode, fromcode, inbuf: cstring, inbytesleft: c.size_t) -> [^]u8 ---
 }
 
 iconv_utf8_locale :: proc "c" (s: string) -> cstring {
@@ -151,13 +151,13 @@ iconv_utf8_locale :: proc "c" (s: string) -> cstring {
 }
 
 iconv_utf8_utf16 :: iconv_utf8_ucs2;
-iconv_utf8_ucs2 :: proc "c" (s: string) -> ^u16 {
-	return cast(^u16)iconv_string("UCS-2-INTERNAL", "UTF-8", cstring(raw_data(s)), len(s)+1);
+iconv_utf8_ucs2 :: proc "c" (s: string) -> [^]u16 {
+	return cast([^]u16)iconv_string("UCS-2-INTERNAL", "UTF-8", cstring(raw_data(s)), len(s)+1);
 }
 
 #assert(size_of(rune) == size_of(c.int));
 
 iconv_utf8_utf32 :: iconv_utf8_ucs4;
-iconv_utf8_ucs4 :: proc "c" (s: string) -> ^rune {
-	return cast(^rune)iconv_string("UCS-4-INTERNAL", "UTF-8", cstring(raw_data(s)), len(s)+1);
+iconv_utf8_ucs4 :: proc "c" (s: string) -> [^]rune {
+	return cast([^]rune)iconv_string("UCS-4-INTERNAL", "UTF-8", cstring(raw_data(s)), len(s)+1);
 }

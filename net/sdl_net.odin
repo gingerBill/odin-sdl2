@@ -63,7 +63,7 @@ MAX_UDPADDRESSES :: 4;
 UDPsocket :: distinct rawptr;
 UDPpacket :: struct {
 	channel: c.int,     /* The src/dst channel of the packet */
-	data:    ^u8,       /* The packet data */
+	data:    [^]u8,     /* The packet data */
 	len:     c.int,     /* The length of the packet data */
 	maxlen:  c.int,     /* The size of the data buffer */
 	status:  c.int,     /* packet status after sending */
@@ -81,8 +81,8 @@ foreign lib {
 	ResizePacket :: proc(packet: ^UDPpacket, newsize: c.int) -> c.int ---
 	FreePacket   :: proc(packet: ^UDPpacket) ---
 
-	AllocPacketV :: proc(howmany: ^c.int, size: c.int) -> ^^UDPpacket ---
-	FreePacketV  :: proc(packetV: ^^UDPpacket) ---
+	AllocPacketV :: proc(howmany: ^c.int, size: c.int) -> [^]^UDPpacket ---
+	FreePacketV  :: proc(packetV: [^]^UDPpacket) ---
 
 
 	UDP_Open           :: proc(port: u16) -> UDPsocket ---
@@ -90,9 +90,9 @@ foreign lib {
 	UDP_Bind           :: proc(sock: UDPsocket, channel: c.int, address: ^IPaddress) -> c.int ---
 	UDP_Unbind         :: proc(sock: UDPsocket, channel: c.int) ---
 	UDP_GetPeerAddress :: proc(sock: UDPsocket, channel: c.int) -> IPaddress ---
-	UDP_SendV          :: proc(sock: UDPsocket, packets: ^^UDPpacket, npackets: c.int) -> c.int ---
+	UDP_SendV          :: proc(sock: UDPsocket, packets: [^]^UDPpacket, npackets: c.int) -> c.int ---
 	UDP_Send           :: proc(sock: UDPsocket, channel: c.int, packet: ^UDPpacket) -> c.int ---
-	UDP_RecvV          :: proc(sock: UDPsocket, packets: ^^UDPpacket) -> c.int ---
+	UDP_RecvV          :: proc(sock: UDPsocket, packets: [^]^UDPpacket) -> c.int ---
 	UDP_Recv           :: proc(sock: UDPsocket, packet: ^UDPpacket) -> c.int ---
 	UDP_Close          :: proc(sock: UDPsocket) ---
 }

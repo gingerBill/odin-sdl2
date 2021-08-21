@@ -18,7 +18,7 @@ Keysym :: struct {
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
 	GetKeyboardFocus        :: proc() -> ^Window ---
-	GetKeyboardState        :: proc(numkeys: ^c.int) -> ^u8 ---
+	GetKeyboardState        :: proc(numkeys: ^c.int) -> [^]u8 ---
 	GetKeyFromScancode      :: proc(scancode: Scancode) -> KeyCode ---
 	GetScancodeFromKey      :: proc(key: KeyCode) -> Scancode ---
 	GetScancodeName         :: proc(scancode: Scancode) -> cstring ---

@@ -261,7 +261,7 @@ foreign lib {
 	SetWindowFullscreen      :: proc(window: ^Window, flags: WindowFlags) -> c.int ---
 	GetWindowSurface         :: proc(window: ^Window) -> ^Surface ---
 	UpdateWindowSurface      :: proc(window: ^Window) -> c.int ---
-	UpdateWindowSurfaceRects :: proc(window: ^Window, rects: ^Rect, numrects: c.int) -> c.int ---
+	UpdateWindowSurfaceRects :: proc(window: ^Window, rects: [^]Rect, numrects: c.int) -> c.int ---
 	SetWindowGrab            :: proc(window: ^Window, grabbed: bool) ---
 	SetWindowKeyboardGrab    :: proc(window: ^Window, grabbed: bool) ---
 	SetWindowMouseGrab       :: proc(window: ^Window, grabbed: bool) ---

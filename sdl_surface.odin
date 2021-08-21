@@ -98,7 +98,7 @@ foreign lib {
 	ConvertSurfaceFormat              :: proc(src: ^Surface, pixel_format: u32, flags: u32) -> ^Surface ---
 	ConvertPixels                     :: proc(width, height: c.int, src_format: u32, src: rawptr, src_pitch: c.int, dst_format: u32, dst: rawptr, dst_pitch: c.int) -> c.int ---
 	FillRect                          :: proc(dst: ^Surface, rect: ^Rect, color: u32) -> c.int ---
-	FillRects                         :: proc(dst: ^Surface, rects: ^Rect, count: c.int, color: u32) -> c.int ---
+	FillRects                         :: proc(dst: ^Surface, rects: [^]Rect, count: c.int, color: u32) -> c.int ---
 	UpperBlit                         :: proc(src: ^Surface, srcrect: ^Rect, dst: ^Surface, dstrect: ^Rect) -> c.int ---
 	LowerBlit                         :: proc(src: ^Surface, srcrect: ^Rect, dst: ^Surface, dstrect: ^Rect) -> c.int ---
 	SoftStretch                       :: proc(src: ^Surface, srcrect: ^Rect, dst: ^Surface, dstrect: ^Rect) -> c.int ---

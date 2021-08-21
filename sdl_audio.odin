@@ -78,7 +78,7 @@ AUDIO_ALLOW_CHANNELS_CHANGE     :: 0x00000004;
 AUDIO_ALLOW_SAMPLES_CHANGE      :: 0x00000008;
 AUDIO_ALLOW_ANY_CHANGE          :: AUDIO_ALLOW_FREQUENCY_CHANGE|AUDIO_ALLOW_FORMAT_CHANGE|AUDIO_ALLOW_CHANNELS_CHANGE|AUDIO_ALLOW_SAMPLES_CHANGE;
 
-AudioCallback :: proc "c" (userdata: rawptr, stream: ^u8, len: c.int);
+AudioCallback :: proc "c" (userdata: rawptr, stream: [^]u8, len: c.int);
 
 /**
  *  The calculated values in this structure are calculated by SDL_OpenAudio().
@@ -114,7 +114,7 @@ AudioCVT :: struct #packed {
 	src_format:   AudioFormat, /**< Source audio format */
 	dst_format:   AudioFormat, /**< Target audio format */
 	rate_incr:    f64,         /**< Rate conversion increment */
-	buf:          ^u8,         /**< Buffer to hold entire audio data */
+	buf:          [^]u8,       /**< Buffer to hold entire audio data */
 	len:          c.int,       /**< Length of original audio buffer */
 	len_cvt:      c.int,       /**< Length of converted audio buffer */
 	len_mult:     c.int,       /**< buffer must be len*len_mult big */
@@ -179,14 +179,14 @@ foreign lib {
  *  Loads a WAV from a file.
  *  Compatibility convenience function.
  */
-LoadWAV :: #force_inline proc "c" (file: cstring, spec: ^AudioSpec, audio_buf: ^^u8, audio_len: ^u32) -> ^AudioSpec {
+LoadWAV :: #force_inline proc "c" (file: cstring, spec: ^AudioSpec, audio_buf: ^[^]u8, audio_len: ^u32) -> ^AudioSpec {
 	return LoadWAV_RW(RWFromFile(file, "rb"), true, spec, audio_buf, audio_len);
 }
 
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
-	LoadWAV_RW :: proc(src: ^RWops, freesrc: bool, spec: ^AudioSpec, audio_buf: ^^u8, audio_len: ^u32) -> ^AudioSpec ---
-	FreeWAV    :: proc(audio_buf: ^u8) ---
+	LoadWAV_RW :: proc(src: ^RWops, freesrc: bool, spec: ^AudioSpec, audio_buf: ^[^]u8, audio_len: ^u32) -> ^AudioSpec ---
+	FreeWAV    :: proc(audio_buf: [^]u8) ---
 }
 
 
@@ -225,8 +225,8 @@ MIX_MAXVOLUME :: 128;
 
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
-	MixAudio           :: proc(dst: ^u8, src: ^u8, len: u32, volume: c.int)                      ---
-	MixAudioFormat     :: proc(dst: ^u8, src: ^u8, format: AudioFormat, len: u32, volume: c.int) ---
+	MixAudio           :: proc(dst: [^]u8, src: [^]u8, len: u32, volume: c.int)                      ---
+	MixAudioFormat     :: proc(dst: [^]u8, src: [^]u8, format: AudioFormat, len: u32, volume: c.int) ---
 	QueueAudio         :: proc(dev: AudioDeviceID, data: rawptr, len: u32) -> c.int              ---
 	DequeueAudio       :: proc(dev: AudioDeviceID, data: rawptr, len: u32) -> u32                ---
 	GetQueuedAudioSize :: proc(dev: AudioDeviceID) -> u32                                        ---
