@@ -126,7 +126,7 @@ foreign lib {
 	GameControllerGetButton             :: proc(gamecontroller: ^GameController, button: GameControllerButton) -> u8 ---
 	GameControllerGetNumTouchpads       :: proc(gamecontroller: ^GameController) -> c.int ---
 	GameControllerGetNumTouchpadFingers :: proc(gamecontroller: ^GameController, touchpad: c.int) -> c.int ---
-	GameControllerGetTouchpadFinger     :: proc(gamecontroller: ^GameController, touchpad: c.int, finger:c.int , state: ^u8, x, y, pressure: ^f32) -> c.int ---
+	GameControllerGetTouchpadFinger     :: proc(gamecontroller: ^GameController, touchpad: c.int, finger: c.int, state: ^u8, x, y: ^f32, pressure: ^f32) -> c.int ---
 	GameControllerHasSensor             :: proc(gamecontroller: ^GameController, type: SensorType) -> bool ---
 	GameControllerSetSensorEnabled      :: proc(gamecontroller: ^GameController, type: SensorType, enabled: bool) -> c.int ---
 	GameControllerIsSensorEnabled       :: proc(gamecontroller: ^GameController, type: SensorType) -> bool ---
