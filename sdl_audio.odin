@@ -183,6 +183,15 @@ LoadWAV :: #force_inline proc "c" (file: cstring, spec: ^AudioSpec, audio_buf: ^
 	return LoadWAV_RW(RWFromFile(file, "rb"), true, spec, audio_buf, audio_len);
 }
 
+LoadWAV_Slice :: proc "c" (file: cstring, spec: ^AudioSpec) -> (audio: []u8, new_spec: ^AudioSpec) {
+	audio_buf: [^]u8;
+	audio_len: u32;
+	if new_spec = LoadWAV(file, spec, &audio_buf, &audio_len); new_spec != nil {
+		audio = audio_buf[:audio_len];
+	}
+	return;
+}
+
 @(default_calling_convention="c", link_prefix="SDL_")
 foreign lib {
 	LoadWAV_RW :: proc(src: ^RWops, freesrc: bool, spec: ^AudioSpec, audio_buf: ^[^]u8, audio_len: ^u32) -> ^AudioSpec ---
