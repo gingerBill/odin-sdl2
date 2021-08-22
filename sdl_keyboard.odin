@@ -33,6 +33,15 @@ foreign lib {
 	IsScreenKeyboardShown   :: proc(window: ^Window) -> bool ---
 }
 
+GetKeyboardStateAsSlice :: proc "c" () -> []u8 {
+	numkeys: c.int;
+	keys := GetKeyboardState(&numkeys);
+	if keys != nil {
+		return keys[:numkeys];
+	}
+	return nil;
+}
+
 GetModState :: #force_inline proc "c" () -> Keymod { return transmute(Keymod)u16(SDL_GetModState()) }
 SetModState :: #force_inline proc "c" (modstate: Keymod) { SDL_SetModState(c.int(transmute(u16)modstate)) }
 
