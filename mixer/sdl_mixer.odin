@@ -108,41 +108,44 @@ foreign lib {
 	Init :: proc(flags: InitFlags) -> c.int ---
 	Quit :: proc() ---
 
-	OpenAudio :: proc(frequency: c.int, format: u16, channels: c.int, chunksize: c.int) -> c.int ---
-	OpenAudioDevice :: proc(frequency: c.int, format: u16, channels: c.int, chunksize: c.int, device: cstring, allowed_changed: c.int) -> c.int ---
-	AllocateChannels :: proc(numchans: c.int) -> c.int ---
-	QuerySpec:: proc(frequency: ^c.int, format: ^u16, channels: ^c.int) -> c.int ---
-	LoadWAV_RW :: proc(src: ^SDL.RWops, freesrc: bool) -> ^Chunk ---
-	LoadMUS :: proc(file: cstring) -> ^Music ---
-	LoadMUS_RW :: proc(src: ^SDL.RWops, freesrc: bool) -> ^Music ---
-	LoadMUSType_RW :: proc(src: ^SDL.RWops, type: MusicType, freesrc: bool) -> ^Music ---
-	QuickLoad_WAV :: proc(mem: [^]u8) -> ^Chunk ---
-	QuickLoad_RAW :: proc(mem: [^]u8, len: u32) -> ^Chunk ---
-	FreeChunk :: proc(chunk: ^Chunk) ---
-	FreeMusic :: proc(music: ^Music) ---
-	GetNumChunkDecoders :: proc() -> c.int ---
-	GetChunkDecoder :: proc(index: c.int) -> cstring ---
-	HasChunkDecoder :: proc(name: cstring) -> bool ---
-	GetNumMusicDecoders :: proc() -> c.int ---
-	GetMusicDecoder :: proc(index: c.int) -> cstring ---
-	HasMusicDecoder :: proc(name: cstring) -> bool ---
-	GetMusicType :: proc(music: ^Music) -> MusicType ---
-	GetMusicTitle :: proc(music: ^Music) -> cstring ---
-	GetMusicTitleTag :: proc(music: ^Music) -> cstring ---
-	GetMusicArtistTag :: proc(music: ^Music) -> cstring ---
-	GetMusicAlbumTag :: proc(music: ^Music) -> cstring ---
+	OpenAudio            :: proc(frequency: c.int, format: u16, channels: c.int, chunksize: c.int) -> c.int ---
+	OpenAudioDevice      :: proc(frequency: c.int, format: u16, channels: c.int, chunksize: c.int, device: cstring, allowed_changed: c.int) -> c.int ---
+	AllocateChannels     :: proc(numchans: c.int) -> c.int ---
+	QuerySpec            :: proc(frequency: ^c.int, format: ^u16, channels: ^c.int) -> c.int ---
+	LoadWAV_RW           :: proc(src: ^SDL.RWops, freesrc: bool) -> ^Chunk ---
+	LoadMUS              :: proc(file: cstring) -> ^Music ---
+	LoadMUS_RW           :: proc(src: ^SDL.RWops, freesrc: bool) -> ^Music ---
+	LoadMUSType_RW       :: proc(src: ^SDL.RWops, type: MusicType, freesrc: bool) -> ^Music ---
+	QuickLoad_WAV        :: proc(mem: [^]u8) -> ^Chunk ---
+	QuickLoad_RAW        :: proc(mem: [^]u8, len: u32) -> ^Chunk ---
+	FreeChunk            :: proc(chunk: ^Chunk) ---
+	FreeMusic            :: proc(music: ^Music) ---
+	GetNumChunkDecoders  :: proc() -> c.int ---
+	GetChunkDecoder      :: proc(index: c.int) -> cstring ---
+	HasChunkDecoder      :: proc(name: cstring) -> bool ---
+	GetNumMusicDecoders  :: proc() -> c.int ---
+	GetMusicDecoder      :: proc(index: c.int) -> cstring ---
+	HasMusicDecoder      :: proc(name: cstring) -> bool ---
+	GetMusicType         :: proc(music: ^Music) -> MusicType ---
+	GetMusicTitle        :: proc(music: ^Music) -> cstring ---
+	GetMusicTitleTag     :: proc(music: ^Music) -> cstring ---
+	GetMusicArtistTag    :: proc(music: ^Music) -> cstring ---
+	GetMusicAlbumTag     :: proc(music: ^Music) -> cstring ---
 	GetMusicCopyrightTag :: proc(music: ^Music) -> cstring ---
 
-	SetPostMix :: proc(mix_func: MixFunc, arg: rawptr) ---
-	HookMusic :: proc(mix_func: MixFunc, arg: rawptr) ---
-	HookMusicFinished :: proc(music_finished: proc "c" ()) ---
-	GetMusicHookData :: proc() -> rawptr ---
+	SetPostMix           :: proc(mix_func: MixFunc, arg: rawptr) ---
+	HookMusic            :: proc(mix_func: MixFunc, arg: rawptr) ---
+	HookMusicFinished    :: proc(music_finished: proc "c" ()) ---
+	GetMusicHookData     :: proc() -> rawptr ---
 
-	ChannelFinished :: proc(channel_finished: proc "c" (channel: c.int)) ---
+	ChannelFinished      :: proc(channel_finished: proc "c" (channel: c.int)) ---
 }
 
 CHANNEL_POST :: -2;
 
+QuickLoad_RAW_Slice :: proc "c" (mem: []u8) -> ^Chunk {
+	return QuickLoad_RAW(raw_data(mem), u32(len(mem)));
+}
 
 EffectFunc_t :: proc "c" (chan: c.int, stream: rawptr, len: c.int, udata: rawptr);
 EffectDone_t :: proc "c" (chan: c.int, udata: rawptr);
