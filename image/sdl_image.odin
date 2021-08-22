@@ -104,7 +104,7 @@ foreign lib {
 	LoadXV_RW   :: proc(src: ^SDL.RWops) -> ^SDL.Surface ---
 	LoadWEBP_RW :: proc(src: ^SDL.RWops) -> ^SDL.Surface ---
 
-	ReadXPMFromArray :: proc(xpm: ^[^]c.char) -> ^SDL.Surface ---
+	ReadXPMFromArray :: proc(xpm: [^]cstring) -> ^SDL.Surface ---
 
 	/* Individual saving functions */
 	SavePNG    :: proc(surface: ^SDL.Surface, file: cstring) -> c.int ---
