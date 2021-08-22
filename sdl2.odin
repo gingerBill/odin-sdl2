@@ -134,6 +134,15 @@ foreign lib {
 	ClearError  :: proc() ---
 }
 
+GetErrorString :: proc "c" () -> string {
+	return string(GetError());
+}
+GetErrorMsgString :: proc "c" (buf: []u8) -> string {
+	cstr := GetErrorMsg(raw_data(buf), c.int(len(buf)));
+	return string(cstr);
+}
+
+
 /**
  *  \name Internal error functions
  *
