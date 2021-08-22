@@ -75,13 +75,13 @@ foreign lib {
 
 	OpenFont           :: proc(file: cstring, ptsize: c.int) -> ^Font ---
 	OpenFontIndex      :: proc(file: cstring, ptsize: c.int, index: c.long) -> ^Font ---
-	OpenFontRW         :: proc(src: ^SDL.RWops, freesrc: c.int, ptsize: c.int) -> ^Font ---
-	OpenFontIndexRW    :: proc(src: ^SDL.RWops, freesrc: c.int, ptsize: c.int, index: c.long) -> ^Font ---
+	OpenFontRW         :: proc(src: ^SDL.RWops, freesrc: bool, ptsize: c.int) -> ^Font ---
+	OpenFontIndexRW    :: proc(src: ^SDL.RWops, freesrc: bool, ptsize: c.int, index: c.long) -> ^Font ---
 
 	OpenFontDPI        :: proc(file: cstring, ptsize: c.int, hdpi, vdpi: c.uint) -> ^Font ---
 	OpenFontIndexDPI   :: proc(file: cstring, ptsize: c.int, index: c.long, hdpi, vdpi: c.uint) -> ^Font ---
-	OpenFontDPIRW      :: proc(src: ^SDL.RWops, freesrc: c.int, ptsize: c.int, hdpi, vdpi: c.uint) -> ^Font ---
-	OpenFontIndexDPIRW :: proc(src: ^SDL.RWops, freesrc: c.int, ptsize: c.int, index: c.long, hdpi, vdpi: c.uint) -> ^Font ---
+	OpenFontDPIRW      :: proc(src: ^SDL.RWops, freesrc: bool, ptsize: c.int, hdpi, vdpi: c.uint) -> ^Font ---
+	OpenFontIndexDPIRW :: proc(src: ^SDL.RWops, freesrc: bool, ptsize: c.int, index: c.long, hdpi, vdpi: c.uint) -> ^Font ---
 
 	SetFontSize    :: proc(font: ^Font, ptsize: c.int) -> c.int ---
 	SetFontSizeDPI :: proc(font: ^Font, ptsize: c.int, hdpi, vdpi: c.uint) -> c.int ---
