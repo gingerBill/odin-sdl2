@@ -116,38 +116,38 @@ foreign lib {
 
 	MeasureText    :: proc(font: ^Font, text: cstring, measure_width: c.int, extent: ^c.int, count: ^c.int) -> c.int ---
 	MeasureUTF8    :: proc(font: ^Font, text: cstring, measure_width: c.int, extent: ^c.int, count: ^c.int) -> c.int ---
-	MeasureUNICODE :: proc(font: ^Font, text: [^]u16, measure_width: c.int, extent: ^c.int, count: ^c.int) -> c.int ---
+	MeasureUNICODE :: proc(font: ^Font, text: [^]u16,  measure_width: c.int, extent: ^c.int, count: ^c.int) -> c.int ---
 
 	RenderText_Solid    :: proc(font: ^Font, text: cstring, fg: SDL.Color) -> ^SDL.Surface ---
 	RenderUTF8_Solid    :: proc(font: ^Font, text: cstring, fg: SDL.Color) -> ^SDL.Surface ---
-	RenderUNICODE_Solid :: proc(font: ^Font, text: [^]u16, fg: SDL.Color) -> ^SDL.Surface ---
+	RenderUNICODE_Solid :: proc(font: ^Font, text: [^]u16,  fg: SDL.Color) -> ^SDL.Surface ---
 
 	RenderText_Solid_Wrapped    :: proc(font: ^Font, text: cstring, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 	RenderUTF8_Solid_Wrapped    :: proc(font: ^Font, text: cstring, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
-	RenderUNICODE_Solid_Wrapped :: proc(font: ^Font, text: [^]u16, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
+	RenderUNICODE_Solid_Wrapped :: proc(font: ^Font, text: [^]u16,  fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 
 	RenderGlyph_Solid   :: proc(font: ^Font, ch: u16, fg: SDL.Color) -> ^SDL.Surface ---
 	RenderGlyph32_Solid :: proc(font: ^Font, ch: rune, fg: SDL.Color) -> ^SDL.Surface ---
 
 	RenderText_Shaded    :: proc(font: ^Font, text: cstring, fg, bg: SDL.Color) -> ^SDL.Surface ---
 	RenderUTF8_Shaded    :: proc(font: ^Font, text: cstring, fg, bg: SDL.Color) -> ^SDL.Surface ---
-	RenderUNICODE_Shaded :: proc(font: ^Font, text: [^]u16, fg, bg: SDL.Color) -> ^SDL.Surface ---
+	RenderUNICODE_Shaded :: proc(font: ^Font, text: [^]u16,  fg, bg: SDL.Color) -> ^SDL.Surface ---
 
 	RenderText_Shaded_Wrapped    :: proc(font: ^Font, text: cstring, fg, bg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 	RenderUTF8_Shaded_Wrapped    :: proc(font: ^Font, text: cstring, fg, bg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
-	RenderUNICODE_Shaded_Wrapped :: proc(font: ^Font, text: [^]u16, fg, bg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
+	RenderUNICODE_Shaded_Wrapped :: proc(font: ^Font, text: [^]u16,  fg, bg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 
-	RenderGlyph_Shaded   :: proc(font: ^Font, ch: u16, fg, bg: SDL.Color) -> ^SDL.Surface ---
+	RenderGlyph_Shaded   :: proc(font: ^Font, ch: u16,  fg, bg: SDL.Color) -> ^SDL.Surface ---
 	RenderGlyph32_Shaded :: proc(font: ^Font, ch: rune, fg, bg: SDL.Color) -> ^SDL.Surface ---
 
 	RenderText_Blended    :: proc(font: ^Font, text: cstring, fg: SDL.Color) -> ^SDL.Surface ---
 	RenderUTF8_Blended    :: proc(font: ^Font, text: cstring, fg: SDL.Color) -> ^SDL.Surface ---
-	RenderUNICODE_Blended :: proc(font: ^Font, text: [^]u16, fg: SDL.Color) -> ^SDL.Surface ---
+	RenderUNICODE_Blended :: proc(font: ^Font, text: [^]u16,  fg: SDL.Color) -> ^SDL.Surface ---
 
 
 	RenderText_Blended_Wrapped    :: proc(font: ^Font, text: cstring, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 	RenderUTF8_Blended_Wrapped    :: proc(font: ^Font, text: cstring, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
-	RenderUNICODE_Blended_Wrapped :: proc(font: ^Font, text: [^]u16, fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
+	RenderUNICODE_Blended_Wrapped :: proc(font: ^Font, text: [^]u16,  fg: SDL.Color, wrapLength: u32) -> ^SDL.Surface ---
 
 	RenderGlyph_Blended   :: proc(font: ^Font, ch: u16, fg: SDL.Color) -> ^SDL.Surface ---
 	RenderGlyph32_Blended :: proc(font: ^Font, ch: rune, fg: SDL.Color) -> ^SDL.Surface ---
