@@ -81,7 +81,7 @@ foreign lib {
 	ResizePacket :: proc(packet: ^UDPpacket, newsize: c.int) -> c.int ---
 	FreePacket   :: proc(packet: ^UDPpacket) ---
 
-	AllocPacketV :: proc(howmany: ^c.int, size: c.int) -> [^]^UDPpacket ---
+	AllocPacketV :: proc(howmany: c.int, size: c.int) -> [^]^UDPpacket ---
 	FreePacketV  :: proc(packetV: [^]^UDPpacket) ---
 
 
