@@ -143,10 +143,6 @@ foreign lib {
 
 CHANNEL_POST :: -2;
 
-QuickLoad_RAW_Slice :: proc "c" (mem: []u8) -> ^Chunk {
-	return QuickLoad_RAW(raw_data(mem), u32(len(mem)));
-}
-
 EffectFunc_t :: proc "c" (chan: c.int, stream: rawptr, len: c.int, udata: rawptr);
 EffectDone_t :: proc "c" (chan: c.int, udata: rawptr);
 
