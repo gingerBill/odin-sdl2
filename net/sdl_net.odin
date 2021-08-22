@@ -97,6 +97,20 @@ foreign lib {
 	UDP_Close          :: proc(sock: UDPsocket) ---
 }
 
+AllocPacketSlice :: proc "c" (howmany: c.int, size: c.int) -> []^UDPpacket {
+	if packets := AllocPacketV(howmany, size); packets != nil {
+		return packets[:howmany];
+	}
+	return nil;
+}
+FreePacketSlice :: proc "c" (packets: []^UDPpacket) {
+	FreePacketV(raw_data(packets));
+}
+
+UDP_SendSlice :: proc "c" (sock: UDPsocket, packets: []^UDPpacket) -> c.int {
+	return UDP_SendV(sock, raw_data(packets), c.int(len(packets)));
+}
+
 
 /***********************************************************************/
 /* Hooks for checking sockets for available data                       */
